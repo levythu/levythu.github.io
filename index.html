@@ -1,10 +1,254 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
+
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-	<title>无标题文档</title>
+	<title>La Levy's</title>
+    <script language="javascript">
+		var isResumee=false;
+		function changeLineWidth()
+		{
+			if (document.body.clientWidth>1100)
+			{
+				document.getElementById("mainBanner").style.width="100%";
+				document.getElementById("transparenter").style.width="100%";
+			}
+			else
+			{
+				document.getElementById("mainBanner").style.width="1100px";
+				document.getElementById("transparenter").style.width="1100px";
+			}
+			document.getElementById("line1").style.width=document.getElementById("mainBanner").offsetWidth-550+"px";
+			document.getElementById("footButton").style.left=document.getElementById("mainBanner").offsetWidth-200+"px";
+		}
+		function loader()
+		{
+			changeLineWidth();
+			document.getElementById("backBut").style.visibility="hidden";
+			document.getElementById("aboutMe").style.visibility="hidden";
+		}
+		function changeToResumee()
+		{
+			if (isResumee==true) return;
+			isResumee=true;
+			document.getElementById("transparenter").style.visibility="hidden";
+			document.getElementById("laTitle").style.visibility="hidden";
+			document.getElementById("laTitle2").style.visibility="hidden";
+			document.getElementById("line1").style.visibility="hidden";
+			document.getElementById("text1").style.visibility="hidden";
+			document.getElementById("text2").style.visibility="hidden";
+			document.getElementById("aboutMe").style.visibility="visible";
+			document.getElementById("backBut").style.visibility="visible";
+			document.getElementById("icoShower").style.borderLeftStyle="none";
+			document.getElementById("icoShower").style.left="52px";
+			document.getElementById("icoShower").style.borderRightStyle="none";
+		}
+		function changeToIndex()
+		{
+			if (isResumee==false) return;
+			isResumee=false;
+			document.getElementById("transparenter").style.visibility="visible";
+			document.getElementById("laTitle").style.visibility="visible";
+			document.getElementById("laTitle2").style.visibility="visible";
+			document.getElementById("line1").style.visibility="visible";
+			document.getElementById("text1").style.visibility="visible";
+			document.getElementById("text2").style.visibility="visible";
+			document.getElementById("aboutMe").style.visibility="hidden";
+			document.getElementById("backBut").style.visibility="hidden";
+			document.getElementById("icoShower").style.borderLeftStyle="solid";
+			document.getElementById("icoShower").style.left="50px";
+			document.getElementById("icoShower").style.borderRightStyle="solid";
+		}
+		function mailToMe()
+		{
+			window.location.href="mailto:zly.george@163.com";
+		}
+		function gotoHm()
+		{
+			window.location.href="page_homework/hw_index.html";
+		}
+	</script>
+	<style type="text/css">
+		body 
+		{
+			background-image: url(index_used_img/bg/bg1.jpg);
+			background-repeat: repeat;
+		}
+		div#transparenter
+		{
+			opacity: 0.7;
+			background-color:#000;
+		}
+		div#mainBanner,#transparenter
+		{
+			position:absolute;
+			top: 180px;
+			height: 200px;
+			left:0px;
+			width: 100%;
+		}
+		div#icoShower
+		{
+			position:absolute;
+			left:50px;
+			top:0px;
+			width:200px;
+			height:200px;
+			border-left:solid #FFFFFF 2px;
+			border-right:solid #FFFFFF 2px;
+		}
+		div#icoShower:hover
+		{
+			position:absolute;
+			left:50px;
+			top:0px;
+			width:200px;
+			height:200px;
+			border-left:solid #FF7A00 2px;
+			border-right:solid #FF7A00 2px;
+		}
+		div#laTitle
+		{
+			position:absolute;
+			left:282px;
+			top:30px;
+			width:200px;
+			height:200px;
+			font-family:"方正姚体", Times, serif;
+			font-size:50px;
+			color:#FF7A00;
+		}
+		div#laTitle2
+		{
+			position:absolute;
+			left:280px;
+			top:-20px;
+			width:200px;
+			height:200px;
+			font-family:"方正姚体", Times, serif;
+			font-size:80px;
+			color:#FFF;
+		}
+		div#line1
+		{    
+			position:absolute;
+			left:550px;
+			width:100px;
+			top:98px;     
+			height:4px;
+			background-color: #CCCCCC;
+			background-image: -moz-linear-gradient(left, #cccccc, #444444);
+			background-image: -webkit-gradient(linear, left top, right top, color-stop(0, #cccccc), color-stop(0.8, #444444));
+		}
+		div#text1
+		{
+			position:absolute;
+			left:550px;
+			top:40px;
+			font-family:"华文细黑", "黑体", serif;
+			font-size:37px;
+			color:#FFF;
+		}
+		div#text2
+		{
+			position:absolute;
+			left:550px;
+			top:108px;
+			font-family:"华文细黑", "黑体", serif;
+			font-size:37px;
+			color:#FF7A00;
+		}
+		a:link,a:visited,a:active,a:hover
+		{
+ 			text-decoration:none;
+			color:inherit;
+		}
+		div#aboutMe
+		{
+			position:absolute;
+			left:280px;
+			top:0px;
+			width:800px;
+			height:200px;
+			font-family: "华文细黑", "黑体";
+			font-size:50px;
+			color:#FF7A00;
+		}
+		div#backBut
+		{
+			position:absolute;
+			top:0px;
+			left:0px;
+			width:50px;
+			height:50px;
+			background-image:url(index_used_img/oth/arrow-left.png);
+			background-size:50px 50px;
+		}
+		div#backBut:hover
+		{
+			position:absolute;
+			top:0px;
+			left:0px;
+			width:50px;
+			height:50px;
+			background-image:url(index_used_img/oth/arrow-left-red.png);
+			background-size:50px 50px;
+		}
+		div#envBut
+		{
+			position:absolute;
+			top:0px;
+			left:70px;
+			width:50px;
+			height:50px;
+			background-image:url(index_used_img/oth/envelope2.png);
+			background-size:50px 50px;
+		}
+		div#envBut:hover
+		{
+			position:absolute;
+			top:0px;
+			left:70px;
+			width:50px;
+			height:50px;
+			background-image:url(index_used_img/oth/envelope2-red.png);
+			background-size:50px 50px;
+		}
+	</style>
 </head>
-<body>
-	123
+<body onresize="changeLineWidth();" onload="loader();">
+	<div id="transparenter">
+    </div>
+	<div id="mainBanner">
+    	<div id="icoShower" onclick="changeToResumee();">
+        	<img src="index_used_img/oth/ico.jpg" width="200px" height="200px">
+        </div>
+        <div id="laTitle">
+        	La
+        </div>
+        <div id="laTitle2">
+        	<br>Levy's
+        </div>
+        <div id="line1">
+        </div>
+        <div id="text1">
+        <a href="page_homework/hw_index.html">如何正确地Web写前端？</a>
+        </div>
+        <div id="text2">
+        <a href="page_blogs/bl_index.html">如何科学地吐槽？</a>
+        </div>
+        <div id="aboutMe">
+        	<div id="name" style="position:absolute;left:0px;top:0px;width:500px;height:50px;font-size:37px;color:#233333;">赵雷彧 (Levy)</div>
+        	<div id="faculty" style="position:absolute;left:0px;top:60px;width:500px;height:50px;font-size:20px;color:#233333;">清华大学 - 软件学院 - 2012级</div>
+            <div id="moi" style="position:absolute;left:0px;top:100px;width:500px;height:50px;font-size:20px;color:#233333;">学生 / 开发者 / 吐槽发生器</div>
+            <div id="ct" style="position:absolute;left:0px;top:140px;width:800px;height:50px;font-size:20px;color:#233333;">联系方式： zly.george@163.com (或点击下方按钮以使用默认邮件客户端发送邮件)</div>
+            <div id="ps" style="position:absolute;left:0px;top:170px;width:800px;height:50px;font-size:15px;color:#888888;">谢绝&quot;只差一个程序员&quot;、&quot;你会PS/做海报/剪视频么&quot; 以及 &quot;帮我写大作业吧&quot;。</div>
+        </div>
+        <div id="footButton" style="position:absolute;top:300px;left:0px;width:200px;height:55px;">
+        	<div id="backBut" onclick="changeToIndex();"></div>
+        	<div id="envBut" onclick="mailToMe();"></div>
+        </div>
+    </div>
 </body>
+
 </html>
