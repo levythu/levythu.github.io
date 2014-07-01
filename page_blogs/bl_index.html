@@ -12,7 +12,7 @@
 				document.getElementById("footButton").style.visibility="hidden";
 			else
 				document.getElementById("footButton").style.visibility="visible";
-			document.getElementById("footButton").style.left=document.getElementById("transparenter").offsetWidth-70+"px";
+			document.getElementById("footButton").style.left=document.getElementById("transparenter").offsetWidth-100+"px";
 		}
 		function loader()
 		{
@@ -26,8 +26,25 @@
 		{
 			window.location.href="../index.html";
 		}
+		function changeFold(index, toHeight)
+		{
+			if (document.getElementById("det"+index).offsetHeight==0)
+			{
+				document.getElementById("det"+index).style.height=toHeight+"px";
+				document.getElementById("moreT"+index).style.backgroundImage="url(img/more-red.png)";
+			}
+			else
+			{
+				document.getElementById("det"+index).style.height=0;
+				document.getElementById("moreT"+index).style.backgroundImage="url(img/more.png)";
+			}
+		}
 	</script>
 	<style type="text/css">
+		html
+		{
+			overflow:scroll;
+		}
 		body 
 		{
 			background-image: url(../index_used_img/bg/bg1.jpg);
@@ -57,7 +74,7 @@
 			top:-2px;
 			width:100px;
 			height:25px;
-			font-family:"方正姚体", Times, serif;
+			font-family:Tahoma, Geneva, sans-serif;
 			font-size:25px;
 		}	
 		div#backBut
@@ -113,7 +130,7 @@
 		div#words1
 		{
 			font-size:60px;
-			font-family:"方正姚体", Times, serif;
+			font-family:Tahoma, Geneva, sans-serif;
 			color:#FF7A00;
 		}
 		div#words2
@@ -125,7 +142,7 @@
 		div.displayer
 		{
 			width: 750px;
-			height: 205px;
+			height: 150px;
 		}
 		div.blocker
 		{
@@ -134,33 +151,61 @@
 		div.info
 		{
 			width: 450px;
-			height: 150px;
+			height: 80px;
 			float:left;
 		}
 		.tit
 		{
-			font-family:Arial, Helvetica, sans-serif;
-			font-size:30px;
-			color:#FF7A00;
+			font-family: "华文细黑","STXihei","黑体","SimHei";
+			font-size:28px;
+			color:#4444444;
 		}
 		.nor
 		{
-			font-family: "华文细黑","黑体";
-			font-size:18px;
-			color:#4444444;
+			position:relative;
+			top:10px;
+			font-family:"Courier New", Courier, monospace;
+			font-weight:bolder;
+			font-size: 60px;
+			color:#FFFFFF;
 		}
-		img.disper
+		.disper
 		{
 			float:left;
-			width: 281px;
-			height: 150px;
-			border: solid 1px #555555;
+			width: 80px;
+			height: 80px;
+			background-color:#FF7A00;
+			text-align:center;
 			margin-right: 8px;
+			
 		}
 		a:link,a:visited,a:active,a:hover
 		{
  			text-decoration:none;
 			color:inherit;
+		}
+		div.moreT
+		{
+			width:30px;
+			height:30px;
+			margin-top: 4px;
+			background-image:url(img/more.png);
+			background-size: 30px 30px;
+		}
+		.detail
+		{
+			position:relative;
+			left:30px;
+			width:660px;
+			height:0px;
+			font-family:"华文细黑","STXihei","黑体","SimHei";
+			overflow:hidden;
+			color:#444444;
+		}
+		.detail p
+		{
+			line-height:1.5;
+			text-indent:25px;
 		}
     </style>
 </head>
@@ -189,11 +234,38 @@
         </div>
         <div id="hm1" class="displayer">
         	<div class="blocker"></div>
-            <img src="img/hm1pic.png" class="disper">
-            <div class="info">
-            	<div class="tit"><a href="../index.html" target="_blank">Homework #1</a></div>
-            	<div class="nor">个人主页静态的实现，利用基础的HTML4/CSS知识。完工日期：2014/07/01(诶好像是我生日的样子...)</div>
+            <div class="disper"><div class="nor">01</div>
             </div>
+            <div class="info">
+            	<div class="tit">初次Web前端课程感受</div>
+                <div id="moreT1" onclick="changeFold(1,420);" class="moreT"></div>
+            </div>
+        </div>
+        <div id="det1" class="detail">
+        <p>夏季学期的Web前端教学课程与我上学期所上的网页设计课相比，尽管到目前为止我还只上了一堂课，但
+
+其差异已经很明显了：网页设计作为一门实用课程教的是如何使用Dreamweaver以及相应技巧设计一个网
+
+页；而Web前端课程教我们网页设计、解析等的基本原理以及更偏技术的应用。更通俗地说，网页设计教
+
+如何制作能让他人了解自己想传达信息的网页；Web前端教我们如何得心应手地把自己的idea付诸实践，
+
+而这也更是我所需要的。</p>
+<p>作为一个有轻微美工强迫症却没有任何设计类细胞的我，在设计网页上最纠结的事莫过于如何在能让自己
+
+美工强迫症得到满足的同时清晰、简练而用户友好地传递信息（尽管很清楚后者才是本质，但从“设计”
+
+来说，在考虑网站的一些方面时前者确实有喧宾夺主的趋势）。而我想在两者间折衷并尽量降低工作量（
+
+Ne rêve pas!），希望能在这门课今后的课程中慢慢摸索出自己的方法以及风格。</p>
+<p>至于关于本课的期望，我自然想学一些最新潮的东西(比如HTML5以及利用其的新特征脱离js实现动画，
+
+2048的画面就是基本上利用HTML5实现的不是么)以及一些更贴近网络通信的知识（前端稍微靠后台一点
+
+的模块，比如和主机通信等等）很期待在之后的课程有详细介绍~。</p>
+
+
+2014-07-01
         </div>
     </div>
 </body>
