@@ -96,12 +96,12 @@ div.whiteLine
 	position:absolute;
 	left: 0px;
 	top:10px;
-	background-image:url(http://127.0.0.1:8000/img/pencil.png);
+	background-image:url(http://levythu.github.io/page_homework/hw3/img/pencil.png);
 	background-size:30px 30px;
 	width: 30px;
 	height: 30px;
 }
 .submitter:hover
 {
-	background-image:url(http://127.0.0.1:8000/img/pencil-r.png);
+	background-image:url(http://levythu.github.io/page_homework/hw3/img/pencil-r.png);
 }
