@@ -181,6 +181,7 @@ function getHWInfoDetailed(courseID,courseName,isLast)
 				list = resp.resultList;
 				for(var i in list)
 				{
+					if (list[i].courseHomeworkRecord.status!='0') continue;
 					deadlines.push(list[i].courseHomeworkInfo);
 					deadlines[deadlines.length-1].lv_theCourseName=courseName;
 				}
