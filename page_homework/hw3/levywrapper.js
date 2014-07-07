@@ -53,10 +53,15 @@ function ldStart()
 	clearInterval(downDelayer);
 	downDelayer=setInterval(layerDown,5);
 }
+function refreshTurnRed()
+{
+	$("div#leftBlock img").eq(2).attr("src","http://levythu.github.io/page_homework/hw3/img/spinner-r.png");
+}
 function stp()
 {
 	$("div#leftBlock img").eq(0).attr("src","http://levythu.github.io/page_homework/hw3/img/arrow-up.png");
 	$("div#leftBlock img").eq(1).attr("src","http://levythu.github.io/page_homework/hw3/img/arrow-down.png");
+	$("div#leftBlock img").eq(2).attr("src","http://levythu.github.io/page_homework/hw3/img/spinner.png");
 	clearInterval(upDelayer);
 	clearInterval(downDelayer);
 }
@@ -224,6 +229,7 @@ function main()
 		 .append($("<div id=leftBlock>")
 		 	.append($("<img src='http://levythu.github.io/page_homework/hw3/img/arrow-up.png' style='top:35px;' class='petiteButton'>").mouseover(ldStart).mouseleave(stp))
 		 	.append($("<img src='http://levythu.github.io/page_homework/hw3/img/arrow-down.png' style='top:335px;' class='petiteButton'>").mouseover(lupStart).mouseleave(stp))
+		 	.append($("<img src='http://levythu.github.io/page_homework/hw3/img/spinner.png' style='top:185px;' class='petiteButton'>").mouseover(refreshTurnRed).mouseleave(stp).click(getHWInformation))
 		 )
 		 .append($("<div id=rightBlock>")
 		 	.append($("<div id=layouter>"))
