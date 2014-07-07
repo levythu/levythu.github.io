@@ -1,0 +1,107 @@
+div.LVwrapper
+{
+	position: fixed;
+	opacity: 0.5;
+	height: 500px;
+	background-color: #000000;
+	z-index: 100;
+	overflow: hidden;
+}
+div.whiteLine
+{
+	position: absolute;
+	left: 20px;
+	width: 100%;
+	top: 45px;
+	height: 3px;
+	background-color: #FFFFFF;
+}
+.logoIcon
+{
+	position: absolute;
+	left: 20px;
+	width: 33px;
+	top: 5px;
+	height: 33px;
+}
+.textShow
+{
+	position: absolute;
+	left: 60px;
+	top: 10px;
+	width: 300px;
+	font-family:Tahoma, Geneva, sans-serif;
+	font-size:21px;
+}
+#leftBlock,#rightBlock
+{
+	position: absolute;
+	top: 70px;
+	height: 420px;
+}
+#leftBlock
+{
+	left: 20px;
+	cbackground-color:#F00;
+	width: 50px;
+}
+#rightBlock
+{
+	left: 72px;
+	cbackground-color:#0F0;
+	width: 273px;
+	overflow:hidden;
+}
+.petiteButton
+{
+	position: absolute;
+	left: 5px;
+	width: 30px;
+	height: 30px;
+}
+#layouter
+{
+	position: absolute;
+	left: 0px;
+	top: 0px;
+	width: 100%;
+}
+.subLayerC
+{
+	position: relative;
+	width: 373px;
+	height: 100px;
+}
+.subLayer
+{
+	position:absolute;
+	left: 40px;
+	top:0px;
+	width: 233px;
+	font-family: "华文细黑","STXihei","黑体","SimHei";
+	font-size:14px;
+	color: #FFFFFF;
+	overflow:hidden;
+	height: 100px;
+	line-height: 150%;
+}
+.notice1
+{
+	color: #FF7A00;
+	font-size:18px;
+	font-weight:bold;
+}
+.submitter
+{
+	position:absolute;
+	left: 0px;
+	top:10px;
+	background-image:url(http://127.0.0.1:8000/img/pencil.png);
+	background-size:30px 30px;
+	width: 30px;
+	height: 30px;
+}
+.submitter:hover
+{
+	background-image:url(http://127.0.0.1:8000/img/pencil-r.png);
+}
