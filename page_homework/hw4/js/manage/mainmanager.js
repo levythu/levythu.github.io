@@ -198,7 +198,7 @@ function setGiantPic(picID)
 function startPlay()
 {
 	isPlaying=true;
-	$("#playButton").css("background-image","url(../img/play-r.png)");
+	$("#playButton").css("background-image","url(img/play-r.png)");
 	player=setInterval(function()
 	{
 		var t=(onShow+1)%NUM_OF_PICS;
@@ -209,19 +209,19 @@ function startPlay()
 function pausePlay()
 {
 	isPlaying=false;
-	$("#playButton").css("background-image","url(../img/play.png)");
+	$("#playButton").css("background-image","url(img/play.png)");
 	clearInterval(player);
 }
 function showInfo()
 {
 	isInfo=true;
-	$("#infoButton").css("background-image","url(../img/info-r.png)");
+	$("#infoButton").css("background-image","url(img/info-r.png)");
 	$("#hiddenInfo").css("opacity",1);
 }
 function hideInfo()
 {
 	isInfo=false;
-	$("#infoButton").css("background-image","url(../img/info.png)");
+	$("#infoButton").css("background-image","url(img/info.png)");
 	$("#hiddenInfo").css("opacity","");
 }
 function adjustComment()
@@ -334,13 +334,13 @@ function initComment()
 }
 function foldComment()
 {
-	$("#bubbleButton").css("background-image","url(../img/bubble.png)");
+	$("#bubbleButton").css("background-image","url(img/bubble.png)");
 	isCommenting=false;
 	$("#commentArea").css("left",-600);
 }
 function unfoldComment()
 {
-	$("#bubbleButton").css("background-image","url(../img/bubble-r.png)");
+	$("#bubbleButton").css("background-image","url(img/bubble-r.png)");
 	isCommenting=true;
 	layPage(currentPage);
 	pausePlay();
