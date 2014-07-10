@@ -414,6 +414,15 @@ a:link,a:visited,a:hover,a:active
 	left: 20px;
 	margin-top: 20px;
 	width: 400px;
+	
+	transition: all 0.5s;
+	-moz-transition: all 0.5s;
+	-webkit-transition: all 0.5s;
+	-o-transition: all 0.5s;
+}
+.commentBlock:hover
+{
+	left: 30px;
 }
 .leftCO
 {
@@ -423,9 +432,10 @@ a:link,a:visited,a:hover,a:active
 	width: 80px;
 	font-family: "Arial","微软雅黑","Microsoft YaHei","黑体","SimHei";
 	font-size: 19px;
+	background: #FF7A00;
 	word-break: break-all;
 	text-align: center;
-	color: #BBBBBB;
+	color: #FFFFFF;
 }
 .rightCO
 {
@@ -440,8 +450,8 @@ a:link,a:visited,a:hover,a:active
 }
 .commentImg
 {
-	width: 70px;
-	height: 70px;
+	width: 74px;
+	height: 74px;
 	border: solid #FF7A00 2px;
 }
 #upButton
