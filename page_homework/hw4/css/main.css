@@ -246,6 +246,7 @@ body
 {
 	border: #000000 solid 1px;
 	width: 700px;
+	height: 55px;
 	opacity: 0.9;
 }
 .text3
@@ -254,7 +255,7 @@ body
 	left: 50px;
 	width: 600px;
 	top: 10px;
-	height: 30px;
+	height: 40px;
 	overflow: hidden;
 	color: #EEEEEE;
 	font-family: "Arial","微软雅黑","Microsoft YaHei","黑体","SimHei";
