@@ -151,7 +151,7 @@ body
 	position: absolute;
 	top: 0px;
 	left: 0px;
-	visibility: hidden;
+	opacity: 0.01;
 }
 .imgCover
 {
@@ -422,7 +422,7 @@ a:link,a:visited,a:hover,a:active
 	font-family: "Arial","华文细黑","STXihei","黑体","SimHei";
 	font-size: 19px;
 	word-break: break-all;
-	text-align: right;
+	text-align: center;
 	color: #BBBBBB;
 }
 .rightCO

@@ -12,7 +12,7 @@ var commentData=[];
 var commentInited=0;
 var isLoading=true,totalCom;
 var isCommenting=false;
-function setCurrentPic(theID)
+function setCurrentPic(theID)	//设置预览栏中的中央图片
 {
 	current=theID;
 	var leftID=(theID-1+NUM_OF_PICS)%NUM_OF_PICS;
@@ -36,7 +36,7 @@ function setCurrentPic(theID)
 	loadPicture(slLeftID);
 	loadPicture(slRightID);
 }
-function movePic(direction, speed, way)
+function movePic(direction, speed, way)	//将预览栏的图片向左/右移动一格
 {
 	$(".petiteImg").css("transition",speed+"s "+way)
 				   .css("-moz-transition",speed+"s "+way) /* Firefox 4 */
@@ -82,7 +82,7 @@ function movePic(direction, speed, way)
 		current=leftID;
 	}
 }
-function addLoadingSign(fatherDiv,sizer)
+function addLoadingSign(fatherDiv,sizer)	//给父标签下加一个正在加载的svg动画
 {
 	fatherDiv.append($("<img src='img/loading.svg' class=loading>")
 						.css("position","absolute")
@@ -93,7 +93,7 @@ function addLoadingSign(fatherDiv,sizer)
 						.css("z-index",1)
 	)
 }
-function callbackMaker(picID)
+function callbackMaker(picID)	//针对加载图片网址的异步回调函数生成器
 {
 	return function(data)
 	{
@@ -103,13 +103,13 @@ function callbackMaker(picID)
 			setGiantPic(picID);
 	}
 }
-function loadPicture(picID)
+function loadPicture(picID)	//异步获取picID号图片的图片网址
 {	
 	if (haveLoaded[picID]!==false) return;
 	if (picID==current) addLoadingSign($(".petiteImg").eq(picID),50);
 	$.get("binginfo/"+(picID+1)+".txt",callbackMaker(picID));
 }
-function moveSeveral(direction,N)
+function moveSeveral(direction,N)	//下方栏图片向某方向一次性移动N格
 {
 	$(".petiteImg img.loading").remove();
 	if (N==1)
@@ -128,7 +128,7 @@ function moveSeveral(direction,N)
 				   .css("-webkit-transition","0.5s") /* Safari & Chrome */
 				   .css("-o-transition","0.5s"); /* Opera */
 }
-function moveToNum(N)
+function moveToNum(N)	//移至某张图
 {
 	if (N==current) reuturn;
 	if ((N-current+NUM_OF_PICS)%NUM_OF_PICS<(current-N+NUM_OF_PICS)%NUM_OF_PICS)
@@ -136,7 +136,7 @@ function moveToNum(N)
 	else
 		moveSeveral("right",(current-N+NUM_OF_PICS)%NUM_OF_PICS);
 }
-function imgClickMaker(clickID)
+function imgClickMaker(clickID)	//下方小图的点击事件生成器
 {	
 	return function()
 	{
@@ -169,7 +169,7 @@ function imgClickMaker(clickID)
 		setGiantPic(clickID);
 	}
 }
-function setGiantPic(picID)
+function setGiantPic(picID)	//设置大图，如没加载好则等待
 {
 	onShow=picID;
 	$(".playedImg").removeClass("playedImg");
@@ -195,7 +195,7 @@ function setGiantPic(picID)
 		}
 	}
 }
-function startPlay()
+function startPlay()	//开始轮播
 {
 	isPlaying=true;
 	$("#playButton").css("background-image","url(img/play-r.png)");
@@ -206,25 +206,25 @@ function startPlay()
 		moveToNum(t);
 	},5000)
 }
-function pausePlay()
+function pausePlay()	//暂停轮播
 {
 	isPlaying=false;
 	$("#playButton").css("background-image","url(img/play.png)");
 	clearInterval(player);
 }
-function showInfo()
+function showInfo()	//显示图片上的文字及信息
 {
 	isInfo=true;
 	$("#infoButton").css("background-image","url(img/info-r.png)");
 	$("#hiddenInfo").css("opacity",1);
 }
-function hideInfo()
+function hideInfo()	//隐藏图片文字信息
 {
 	isInfo=false;
 	$("#infoButton").css("background-image","url(img/info.png)");
 	$("#hiddenInfo").css("opacity","");
 }
-function adjustComment()
+function adjustComment()	//根据窗口大小动态调整评论框细节
 {
 	$("#commentArea").height(window.innerHeight);
 	if (isComment)
@@ -246,14 +246,14 @@ function adjustComment()
 		}
 	}
 }
-function getHeight(x,y)
+function getHeight(x,y)	//max{x,y}+5
 {
 	if (x>y)
 		return x+5;
 	else
 		return y+5;
 }
-function layComment(commentID,page)
+function layComment(commentID,page)	//呈现某页的某个评论
 {
 	var l=$("<div class=leftCO>");
 	l.text(commentID.name).prepend($("<img class=commentImg>").attr("src","head/"+commentID.head));
@@ -261,18 +261,18 @@ function layComment(commentID,page)
 	r.text(commentID.comment);
 	$("<div class=commentBlock>").append(l).append(r).appendTo($("#factShower")).height(getHeight(l.height(),r.height()));
 }
-function layCommentAll(fullPage)
+function layCommentAll(fullPage)	//将某页的全部评论展现出
 {
 	for (var i=0;i<fullPage;i++)
 		layComment(commentData[i],currentPage);
 	isLoading=false;
 }
-function clearComment()
+function clearComment()	//清理当前页的评论
 {
 	$("#factShower").children().remove();
 	commentInited=0;
 }
-function callbackMaker_lp(nums,fullPage)
+function callbackMaker_lp(nums,fullPage)	//成功获取评论后的回调函数
 {
 	return function(data)
 	{
@@ -282,7 +282,7 @@ function callbackMaker_lp(nums,fullPage)
 			layCommentAll(fullPage);
 	}
 }
-function layPage(pageID)
+function layPage(pageID)	//着手开始加载某页评论
 {
 	isLoading=true;
 	clearComment();
@@ -294,36 +294,36 @@ function layPage(pageID)
 	$("#pageIndexShower").text(pageID+"/"+totalPage);
 	currentPage=pageID;
 }
-function layerDown()
+function layerDown()	//评论上移
 {
 	x=$("#factShower");
 	if (x[0].offsetTop<0)
 		x.css("top",x[0].offsetTop+1);
 }
-function layerUp()
+function layerUp()	//评论下移
 {
 	x=$("#factShower");
 	if (x[0].offsetTop>$("#commentShower").height()-x.height())
 		x.css("top",x[0].offsetTop-1);
 }
-function lupStart()
+function lupStart()	//开始持续上滚动
 {
 	clearInterval(upDelayer);
 	clearInterval(downDelayer);
 	upDelayer=setInterval(layerUp,5);
 }
-function ldStart()
+function ldStart()	//开始持续下滚动
 {
 	clearInterval(upDelayer);
 	clearInterval(downDelayer);
 	downDelayer=setInterval(layerDown,5);
 }
-function stp()
+function stp()	//停止滚动
 {
 	clearInterval(upDelayer);
 	clearInterval(downDelayer);
 }
-function initComment()
+function initComment()	//初始化评论个数、页数
 {
 	$.get("comment/totalCount.txt",function(DATA)
 	{
@@ -332,13 +332,13 @@ function initComment()
 		isLoading=false;
 	})
 }
-function foldComment()
+function foldComment()	//收起评论
 {
 	$("#bubbleButton").css("background-image","url(img/bubble.png)");
 	isCommenting=false;
 	$("#commentArea").css("left",-600);
 }
-function unfoldComment()
+function unfoldComment()	//展开评论
 {
 	$("#bubbleButton").css("background-image","url(img/bubble-r.png)");
 	isCommenting=true;
@@ -346,7 +346,7 @@ function unfoldComment()
 	pausePlay();
 	$("#commentArea").css("left",0);
 }
-function getReady()
+function getReady()	//DOM加载完成后执行总函数
 {
 	for (var i=0;i<NUM_OF_PICS;i++)
 	{
