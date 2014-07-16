@@ -38,6 +38,7 @@ function initTerrain(id)
 	{
 		var canvas=$("#canvas1")[0];
 		var context=canvas.getContext("2d");
+		context.clearRect(0,0,WIDTH,HEIGHT);
 		context.drawImage(this, 0, 0);
 		
 		var imageData=context.getImageData(0,0,WIDTH,HEIGHT);

@@ -30,6 +30,7 @@ var st_FaceBuffer={};
 var st_PlayerInfo={};
 var st_PlayerWidth=48;
 var st_PlayerHeight=32;
+var st_walkRound=FPS/4-1;
 
 function approxGrad(x,y)
 {
@@ -121,6 +122,7 @@ function player_OnCrush()
 		
 	var k=(approxGrad(posX+SAMPLE_RANGE,posY)-approxGrad(posX-SAMPLE_RANGE,posY))/(2*SAMPLE_RANGE);	
 	this.faceAngle=-Math.atan(k);
+
 	
 	var tX=this.velocity[0]*this.elaticity,tY=this.velocity[1]*this.elaticity;
 	if (this.elaticity==0) 
@@ -150,6 +152,8 @@ function player_onJump()
 	this.velocity[1]-=JUMP_FORCE;
 	this.elaticity=0;
 	this.haveLean=false;
+	var au=new Audio("au/walk.wav");
+	au.play();
 	if (this.status=="crawl")
 	{
 		this.velocity[0]+=(this.orientation=="l"?-1*JUMP_LONG:JUMP_LONG);
@@ -171,6 +175,13 @@ function player_onCrawl(direction)	//'l'-'r'
 	if (!globalTerrain.rawData[pY][pX+dirVal])
 	{
 		while (measure>-CANNOT_WALK && !globalTerrain.rawData[pY-measure+1][pX+dirVal]) measure--;
+	}
+	st_walkRound++
+	if (st_walkRound==FPS/4)
+	{
+		var au=new Audio("au/walk.wav");
+		au.play();
+		st_walkRound=0;
 	}
 	this.position[0]+=dirVal;
 	this.position[1]-=measure;
@@ -234,15 +245,21 @@ function player_onReady()
 }
 function player_onHit(injury)
 {
+	if (this.status=="die") return;
 	this.health-=injury;
 	if (this.health<=0) this.onDie();
 }
 function player_onDie(injury)
 {
+	if (this.status=="die") return;
 	this.status="die";
 	this.health=0;
 	if (this.id==globalFocus)
 		nextPlay(-1);
+		
+	var au=new Audio("au/crow.mp3");
+	au.play();
+	
 	var sl=new soul();
 	sl.onSpawn(this.position[0],this.position[1]);
 	globalObjects.push(sl);
@@ -251,6 +268,8 @@ function player_enchantez(type)
 {
 	if (this.energy<st_enchante_energy[type]) return;
 	this.energy-=st_enchante_energy[type];
+	var au=new Audio("au/pick.wav");
+	au.play();
 	this.enchanter.push(type);
 	
 	var sl=new enchante(1,type);

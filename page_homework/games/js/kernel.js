@@ -11,6 +11,12 @@ var ker_Blood={};
 var ker_LastCan=false;
 var ker_artiZoom=false;
 var ker_InGame=false;
+var ker_SetEnd=false;
+/*
+var playBGM=document.createElement("audio");
+	playBGM.loop=true;
+	playBGM.preload="meta";
+	playBGM.src="au/vik.mp3";*/
 
 function clickOn(e)
 {
@@ -35,6 +41,7 @@ function preLoad()
 
 	getTerrain(2);
 	getTerrain(1);
+	getTerrain(3);
 	initMissile();
 	initAimer();
 	initArrow();
@@ -151,11 +158,14 @@ function nextPlay(who)
 	st_aimer_angle=INIT_ANGLE;
 	globalObjects[globalFocus].energy=MAX_ENERGY;
 	globalObjects[globalFocus].enchanter=[];
+	var au=new Audio("au/turn.wav");
+	au.play();
 	globalWind=Math.random()*10-5;
 }
 function keyboardHook(e)		//ATTENTION: PROBABLY MULTIPLE JUMP
 {
 	if (!ker_InGame) return;
+	e.preventDefault();
 	if (globalFocus>=globalPlayerCount) return;
 	
 	var keyPressed=e.keyCode;
@@ -181,9 +191,11 @@ function keyboardHook(e)		//ATTENTION: PROBABLY MULTIPLE JUMP
 		switch (keyPressed)
 		{
 		case KEY_LEFT:
+			if (globalObjects[globalFocus].status=="stand") st_walkRound=FPS/4-1;
 			globalObjects[globalFocus].onCrawl("l");
 			break;
 		case KEY_RIGHT:
+			if (globalObjects[globalFocus].status=="stand") st_walkRound=FPS/4-1;
 			globalObjects[globalFocus].onCrawl("r");
 			break;
 		case KEY_LCTRL:
@@ -219,6 +231,7 @@ function keyboardHook(e)		//ATTENTION: PROBABLY MULTIPLE JUMP
 function keyboardHook2(e)	
 {
 	if (!ker_InGame) return;
+	e.preventDefault();
 	if (globalFocus>=globalPlayerCount) return;
 	var keyPressed=e.keyCode;
 	if (keyPressed==KEY_LEFT || keyPressed==KEY_RIGHT)
@@ -254,6 +267,11 @@ function postLoad(id)
 	globalObjects[0].operate="do";
 	globalObjects[0].energy=MAX_ENERGY;
 	globalObjects[globalFocus].enchanter=[];
+	
+	$("#bk1")[0].pause();
+	$("#bk1")[0].currentTime=0;
+	$("#bk1")[0].play();
+	//playBGM.play();
 	
 	st_aimer_angle=INIT_ANGLE;
 	globalWind=Math.random()*10-5;
@@ -445,10 +463,12 @@ function refreshLayerDeux()
 	calculateBlood();
 	for (var i=0;i<globalObjects.length;i++)
 		globalObjects[i].onDraw(globalContext2);
-	if (ker_Blood.red==0 || ker_Blood.blue==0)
+	if (ker_SetEnd==false && (ker_Blood.red<=0 || ker_Blood.blue<=0))
 	{
 		ker_InGame=false;
 		setTimeout(gameOver,1500);
+		ker_SetEnd=true;
+		$("#bk1")[0].pause();
 	}
 }
 function refreshLayerTrois()
@@ -495,6 +515,10 @@ function gameOver()
 	globalObjects=[];
 	clearInterval(ker_Refresh2Timer);
 	
+	var au=new Audio("au/vik.mp3");
+	au.play();
+	
+	ker_SetEnd=false;
 	if (ker_Blood.red==0)
 		goToEndingPage("BLUE TEAM");
 	else

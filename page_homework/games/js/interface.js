@@ -1,5 +1,5 @@
 var moduleCompleted = 0;
-var moduleInTotal = 20;	//NEW!! in 7
+var moduleInTotal = 21;	//NEW!! in 7
 var chosenMapImg = 2;
 var startButtonClicked = false;
 
@@ -8,9 +8,18 @@ function addGlobalFlag(){
 }
 
 function goToEndingPage(arg){
-	$('#winner').html(arg);
+	
+	$('#winner').html(arg).css("font-size","80px");
+	if (arg == "BLUE TEAM") {
+		$('#winner').css("color","#4169E1");
+	}
+	else if (arg == "RED TEAM") {
+		$('#winner').css("color","#FF0000");
+	}
+
 	$('#ending-image').css("visibility","visible");
 }
+
 
 function bindEventsToButtons(){
 	
