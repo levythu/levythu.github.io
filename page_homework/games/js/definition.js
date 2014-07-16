@@ -35,7 +35,7 @@ var INIT_ANGLE=20;
 var MAP_MARGIN=20;
 var MAX_TEAM_HEALTH=100;
 var MAX_HEALTH_WIDTH=400;
-var MAX_ENERGY=180;
+var MAX_ENERGY=200;
 var ENERGY_WIDTH=70;
 
 //Used for global variables' declaration

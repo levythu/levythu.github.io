@@ -5,6 +5,7 @@
 	left: 0px;
 	top: 0px;
 	overflow: hidden;
+	visibility: hidden;
 }
 #canvas1,#canvas2,#canvas3
 {

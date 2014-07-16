@@ -2,6 +2,7 @@ var st_aimer;
 var st_aimer_info={width:60,height:60};
 var st_aimer_angle;	//deg
 var st_arrow;
+
 function initAimer()
 {
 	st_aimer=new Image;

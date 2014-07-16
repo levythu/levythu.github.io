@@ -65,7 +65,7 @@ function player_OnDraw(context)
 	
 	context.save();
 	context.textAlign="center";
-	context.font="bold 19px Bookworm"
+	context.font="bold 19px BabyDoll"
 	if (this.appear=="red")
 		context.fillStyle = "rgba(255,0,0,0.9)";
 	else
@@ -185,15 +185,39 @@ function player_onLean(direction)
 	this.haveLean=true;
 	this.velocity[0]+=dirVal*LEAN_FORCE;
 }
-function player_onLaunch(angle,force)	//angle in degree
+function player_onLaunch(angle,force,is3)	//angle in degree
 {
 	var dirVal=(this.orientation=='l'?-1:1);
 	var lauchPlacex=this.position[0]+dirVal*(PLAYER_PIC_WIDTH-st_PlayerInfo[this.appear].cx)*Math.cos(this.faceAngle);
 	var lauchPlacey=this.position[1]+dirVal*(PLAYER_PIC_WIDTH-st_PlayerInfo[this.appear].cx)*Math.sin(this.faceAngle)-PLAYER_PIC_HEIGHT/3;
-	var miss=new missile(10);
+	var atk=1,x3=false;
+	if (is3==true)
+	{
+		atk=0.5;
+	}
+	else
+	{
+		for (var i=0;i<this.enchanter.length;i++)
+		{
+			if (this.enchanter[i]=="p20")
+				atk+=0.2;
+			if (this.enchanter[i]=="p50")
+				atk+=0.5;
+			if (this.enchanter[i]=="x3")
+				x3=true;
+		}
+	}
+	var miss=new missile(10,atk);
+	
+	if (x3)
+	{
+		this.onLaunch(angle-20,force,true);
+		this.onLaunch(angle+20,force,true);
+	}
 	angle=angle*Math.PI/180-dirVal*this.faceAngle;
 	miss.onSpawn(lauchPlacex,lauchPlacey,angle,force,dirVal);
 	globalObjects.push(miss);
+	
 	this.operate="idle";
 	globalFocus=globalObjects.length-1;
 }
@@ -223,6 +247,16 @@ function player_onDie(injury)
 	sl.onSpawn(this.position[0],this.position[1]);
 	globalObjects.push(sl);
 }
+function player_enchantez(type)
+{
+	if (this.energy<st_enchante_energy[type]) return;
+	this.energy-=st_enchante_energy[type];
+	this.enchanter.push(type);
+	
+	var sl=new enchante(1,type);
+	sl.onSpawn(this.position[0],this.position[1]-50);
+	globalObjects.push(sl);
+}
 function player(id,appear)
 {
 	this.type="player";
@@ -248,6 +282,8 @@ function player(id,appear)
 	this.onLaunch=player_onLaunch;
 	this.onHit=player_onHit;
 	this.onDie=player_onDie;
+	this.onEnchantez=player_enchantez;
+	this.enchanter=[];
 	this.elaticity=this.elaticity_back=0.4;
 	this.lForce=0;
 	this.energy=MAX_ENERGY;

@@ -42,7 +42,7 @@ function soul_OnDraw(context)
 	context.drawImage(st_soul_img,0,0);
 	context.restore();
 }
-function soul_OnSpawn(x,y)	//in rad
+function soul_OnSpawn(x,y)	
 {
 	this.position[0]=x;
 	this.position[1]=y;

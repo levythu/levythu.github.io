@@ -5,8 +5,11 @@ CSS for loading page
 #box {
 	width: 1004px;
 	height: 630px;
+	top: 10px;
+	left: 10px;
 	position: absolute;
-	overflow: hidden;	
+	overflow: hidden;
+	z-index: 100;
 }
 
 #starting-image {
@@ -16,7 +19,7 @@ CSS for loading page
 	overflow: hidden;
 	top: 0px;
 	visibility: hidden;
-	z-index: 3;
+	z-index: 6;
 	background-image: url(../resources/6.png);
 	background-repeat: repeat;
 }
@@ -33,7 +36,7 @@ CSS for loading page
 	height: 630px;
 	position: absolute;
 	overflow: hidden;
-	z-index: 4;
+	z-index: 9;
 	background-image: url(../resources/4.png);
 	background-repeat: repeat-x;
 }
@@ -255,8 +258,8 @@ CSS for ending page
 	position: absolute;
 	overflow: hidden;
 	top: 0px;
-	z-index: 0px;
-	display: none;
+	z-index: 0;
+	visibility: hidden;
 	background-image: url(../resources/6.png);
 	background-repeat: repeat;
 	font-family: 'BabyDoll';

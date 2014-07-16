@@ -30,7 +30,7 @@ var st_missileBody={};
 var st_missileColor;
 var st_missileBlastRadius=45;
 var st_blastForce=5000;
-var st_maxInjury=30;
+var st_maxInjury=50;
 
 function missile_OnDraw(context)
 {
@@ -88,7 +88,7 @@ function missile_Blast()
 				globalObjects[i].velocity[1]+=force*(globalObjects[i].position[1]-this.position[1])/tantPis;
 			}
 			//damage;
-			globalObjects[i].onHit(Math.round((1-tantPis/st_missileBlastRadius)*st_maxInjury));
+			globalObjects[i].onHit(Math.round((1-tantPis/st_missileBlastRadius)*st_maxInjury*this.powerC));
 		}
 	}
 	var y1;
@@ -103,7 +103,8 @@ function missile_Blast()
 				smk.onSpawn(blastCentre[0]+j,blastCentre[1]+i,Math.random()*1.5);
 				globalObjects.push(smk);
 			}
-			globalTerrain.ruin[blastCentre[1]+i][blastCentre[0]+j]=true;
+			if (blastCentre[1]+i<=HEIGHT-MAP_MARGIN)
+				globalTerrain.ruin[blastCentre[1]+i][blastCentre[0]+j]=true;
 		}
 	}
 	refreshTerrain(blastCentre[0]-st_missileBlastRadius,blastCentre[1]-st_missileBlastRadius,st_missileBlastRadius*2+1,st_missileBlastRadius*2+1);
@@ -113,8 +114,12 @@ function missile_OnCrush()
 	this.canEliminate=true;
 	this.blast();
 }
-function missile(id)
+function missile(id,pwd)
 {
+	if (pwd==undefined)
+		this.powerC=1;
+	else
+		this.powerC=pwd;
 	this.type="entity";
 	this.id=id;
 	this.g=150;

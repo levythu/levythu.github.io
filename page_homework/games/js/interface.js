@@ -1,6 +1,6 @@
 var moduleCompleted = 0;
-var moduleInTotal = 16;
-var chosenMapImg;
+var moduleInTotal = 20;	//NEW!! in 7
+var chosenMapImg = 2;
 var startButtonClicked = false;
 
 function addGlobalFlag(){
@@ -9,7 +9,7 @@ function addGlobalFlag(){
 
 function goToEndingPage(arg){
 	$('#winner').html(arg);
-	$('#ending-image').css("z-index","5").css("display","block");
+	$('#ending-image').css("visibility","visible");
 }
 
 function bindEventsToButtons(){
@@ -70,6 +70,7 @@ function bindEventsToButtons(){
 			event.preventDefault();
 		} else {
 
+			$('.map-preview:eq('+ (chosenMapImg - 1) +')').css("border-color","#9AC0CD");
 			$('#menu-area-map').fadeIn("slow",function(){
 				$(this).css("display","block");
 			});
@@ -107,10 +108,13 @@ function bindEventsToButtons(){
 	});
 	
 	
-	$('#return-home').click(function(){
-		$('#starting-image').css("z-index","6").css("top","0px");
-		$('#ending-image').css("display","none").css("z-index","0");
-		$('#starting-image').css("z-index","3");
+	$('#return-home a').click(function(){
+		$('#starting-image').css("top","0px");
+		setTimeout(
+			function(){
+				$('#ending-image').css("visibility","hidden");
+			}, 2000
+		);
 		startButtonClicked = false;
 	});
 }
@@ -177,9 +181,12 @@ function getFrontpage(){
 	bindEventsToButtons();
 	
 	$('#starting-image').css("visibility","visible");
+	
 	$('#loader-box').fadeOut(1500, function(){
 		$(this).css("z-index","-1");
 	});
+
+	$('#film').css("visibility","visible");
 	
 	vibrateWidgets();
 	

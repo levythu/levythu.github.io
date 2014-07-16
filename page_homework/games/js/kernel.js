@@ -10,9 +10,11 @@ var ker_pip=[];
 var ker_Blood={};
 var ker_LastCan=false;
 var ker_artiZoom=false;
+var ker_InGame=false;
 
 function clickOn(e)
 {
+	if (!ker_InGame) return;
 	console.log(e.clientX,e.clientY);
 	zoom("art",e.clientX,e.clientY);
 }
@@ -32,14 +34,18 @@ function preLoad()
 				 .css("top",-MAP_MARGIN);
 
 	getTerrain(2);
+	getTerrain(1);
 	initMissile();
 	initAimer();
 	initArrow();
 	initSmoke();
 	initSoul();
+	initEnchante("p20");
+	initEnchante("p50");
+	initEnchante("x3");
 	initPlayerPic("red",2);
 	initPlayerPic("blue",3);
-	$("#widget").click(clickOn);
+	$("#box").click(clickOn);
 	globalContext2=$("#canvas2")[0].getContext("2d");
 	globalContext3=$("#canvas3")[0].getContext("2d");
 	if (document.all) globalIsIE=true; else globalIsIE=false;
@@ -144,10 +150,12 @@ function nextPlay(who)
 	ker_PrevPlayer=globalFocus;
 	st_aimer_angle=INIT_ANGLE;
 	globalObjects[globalFocus].energy=MAX_ENERGY;
+	globalObjects[globalFocus].enchanter=[];
 	globalWind=Math.random()*10-5;
 }
 function keyboardHook(e)		//ATTENTION: PROBABLY MULTIPLE JUMP
 {
+	if (!ker_InGame) return;
 	if (globalFocus>=globalPlayerCount) return;
 	
 	var keyPressed=e.keyCode;
@@ -196,11 +204,21 @@ function keyboardHook(e)		//ATTENTION: PROBABLY MULTIPLE JUMP
 		case KEY_P:
 			nextPlay(-1);
 			break;
+		case KEY_Z:
+			globalObjects[globalFocus].onEnchantez("x3");
+			break;
+		case KEY_X:
+			globalObjects[globalFocus].onEnchantez("p50");
+			break;
+		case KEY_C:
+			globalObjects[globalFocus].onEnchantez("p20");
+			break;
 		}
 	}
 }
 function keyboardHook2(e)	
 {
+	if (!ker_InGame) return;
 	if (globalFocus>=globalPlayerCount) return;
 	var keyPressed=e.keyCode;
 	if (keyPressed==KEY_LEFT || keyPressed==KEY_RIGHT)
@@ -235,9 +253,11 @@ function postLoad(id)
 	ker_PrevPlayer=0;
 	globalObjects[0].operate="do";
 	globalObjects[0].energy=MAX_ENERGY;
+	globalObjects[globalFocus].enchanter=[];
 	
 	st_aimer_angle=INIT_ANGLE;
 	globalWind=Math.random()*10-5;
+	ker_InGame=true;
 }
 function standConfirm()
 {
@@ -425,7 +445,11 @@ function refreshLayerDeux()
 	calculateBlood();
 	for (var i=0;i<globalObjects.length;i++)
 		globalObjects[i].onDraw(globalContext2);
-	if (ker_Blood.red==0 || ker_Blood.blue==0) gameOver();
+	if (ker_Blood.red==0 || ker_Blood.blue==0)
+	{
+		ker_InGame=false;
+		setTimeout(gameOver,1500);
+	}
 }
 function refreshLayerTrois()
 {
