@@ -90,7 +90,7 @@ function missile_Blast()
 				globalObjects[i].velocity[1]+=force*(globalObjects[i].position[1]-this.position[1])/tantPis;
 			}
 			//damage;
-			globalObjects[i].onHit(Math.abs(Math.round((1-tantPis/st_missileBlastRadius)*st_maxInjury*this.powerC)));
+			globalObjects[i].onHit(Math.round((1-tantPis/st_missileBlastRadius)*st_maxInjury*this.powerC));
 		}
 	}
 	var y1;

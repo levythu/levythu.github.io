@@ -24,6 +24,24 @@
     <script type="text/javascript" src="js/interface.js"></script>
 </head>
 <body>
+
+    <div id="side-bar">
+        <div id="major-role">
+            <span>·ω·</span>
+        </div>
+        <div id="instruction">
+            <span>移动：← →</span>
+            <span>跳跃：Ctrl</span>
+            <span>发射导弹：Space</span>
+            <span>调整发射方向：↑ ↓</span>
+            <span>三连击：Z</span>
+            <span>增加50%攻击：X</span>
+            <span>增加20%攻击：C</span>
+        </div>
+    </div>
+
+    <!--_________________________-->
+    <audio src="au/button.wav" preload="auto" style="visibility:hidden"></audio>
 	<audio src="au/exp.wav" preload="auto" style="visibility:hidden"></audio>
 	<audio src="au/fire.wav" preload="auto" style="visibility:hidden"></audio>
 	<audio src="au/walk.wav" preload="auto" style="visibility:hidden"></audio>
@@ -58,6 +76,8 @@
 		</canvas>  
 	</div>
     <!--_________________________-->
+
+
     <div id="box">
 		
         <div id="starting-image">
@@ -76,7 +96,7 @@
         			<a id="choose-map" class="menu-char">MAP</a>
         		</div>
         		<div id="mode-menu" class="menu-button">
-        			<a id="choose-mode" class="menu-char">MODE</a>
+        			<a id="choose-mode" class="menu-char">ABOUT</a>
         		</div>
         	</div>
             
@@ -88,7 +108,7 @@
                 	<img id="2-map" class="map-preview" src="file/terrain/2/pic.png"/>
                 </div>
                 <div class="map-preview-box">
-                	<img id="3-map" class="map-preview" src="resources/3.jpg"/>
+                	<img id="3-map" class="map-preview" src="file/terrain/3/pic.png"/>
                 </div>
                 <div class="map-preview-box">
                 	<img id="4-map" class="map-preview" src="resources/9.jpg"/>
@@ -100,8 +120,19 @@
                 	<img id="6-map" class="map-preview" src="resources/11.jpg"/>
                 </div>
                 
-                <div id="ok-return">
-                	<span id="ok-button">OK</span>
+                <div class="ok-return">
+                	<span class="ok-button">OK</span>
+                </div>
+            </div>
+
+            <div id="menu-area-about">
+                <div id="about-content">
+                    <span>Developers: </span>
+                    <span>ZhaoLeiyu</span>
+                    <span>LiuJunlin</span>
+                </div>
+                <div class="ok-return">
+                    <span class="ok-button">OK</span>
                 </div>
             </div>
         	

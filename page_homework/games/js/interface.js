@@ -69,6 +69,9 @@ function bindEventsToButtons(){
 		} else {
 			startButtonClicked = true;
 
+			var au = new Audio("au/button.wav");
+			au.play();
+
 			startGame(chosenMapImg);
 		}
 	});
@@ -78,6 +81,8 @@ function bindEventsToButtons(){
 		if (startButtonClicked) {
 			event.preventDefault();
 		} else {
+			var au = new Audio("au/button.wav");
+			au.play();
 
 			$('.map-preview:eq('+ (chosenMapImg - 1) +')').css("border-color","#9AC0CD");
 			$('#menu-area-map').fadeIn("slow",function(){
@@ -91,14 +96,50 @@ function bindEventsToButtons(){
 		}
 		
 	});
+
+	$('#choose-mode').click(function(){
+		if (startButtonClicked) {
+			event.preventDefault();
+		} else {
+			var au = new Audio("au/button.wav");
+			au.play();
+
+			$('#menu-area-about').fadeIn("slow",function(){
+				$(this).css("display","block");
+			});
+			$('#widget-area').fadeOut("fast");
+			$('#game-title').css("top","20px");
+			$('#start-menu').css("visibility","hidden");
+			$('#map-menu').css("visibility","hidden");
+			$('#menu-area').css("top","-40px");
+		}
+	});
 	
 	
-	$('#ok-button').click(function(){
-		$('#menu-area-map').fadeOut("slow",function(){
-			$(this).css("display","none");
-		});
+	$('.ok-button').click(function(){
+		var au = new Audio("au/button.wav");
+		au.play();
+
+		if ($('#menu-area-map').css("display") == "block") {
+			$('#menu-area-map').fadeOut("slow",function(){
+				$(this).css("display","none");
+			});
+		}
+		if ($('#menu-area-about').css("display") == "block") {
+			$('#menu-area-about').fadeOut("slow",function(){
+				$(this).css("display","none");
+			});
+		}
+		
 		$('#menu-area').css("top","260px");
-		$('#mode-menu').css("visibility","visible");
+
+		if ($('#mode-menu').css("visibility") == "hidden") {
+			$('#mode-menu').css("visibility","visible");
+		}
+		if ($('#map-menu').css("visibility") == "hidden") {
+			$('#map-menu').css("visibility","visible");
+		}
+
 		$('#start-menu').css("visibility","visible");
 		$('#game-title').css("top","80px");
 		$('#widget-area').fadeIn("slow");
@@ -106,18 +147,25 @@ function bindEventsToButtons(){
 	
 	
 	$('.map-preview').click(function(){
-		for (var i = 0; i < $('.map-preview').length; i++) {
-			if ($('.map-preview:eq('+i+')').css("border-color") != "transparent") {
-				$('.map-preview:eq('+i+')').css("border-color","transparent");	
+		var t = parseInt($(this).attr("id")[0]);
+
+		if (t <= 3) {
+			for (var i = 0; i < $('.map-preview').length; i++) {
+				if ($('.map-preview:eq('+i+')').css("border-color") != "transparent") {
+					$('.map-preview:eq('+i+')').css("border-color","transparent");	
+				}
 			}
+			$(this).css("border-color","#9AC0CD");
+			chosenMapImg = t;
+			console.log(chosenMapImg);
 		}
-		$(this).css("border-color","#9AC0CD");
-		chosenMapImg = parseInt($(this).attr("id")[0]);
-		console.log(chosenMapImg);
+		
 	});
 	
 	
 	$('#return-home a').click(function(){
+		var au = new Audio("au/button.wav");
+		au.play();
 		$('#starting-image').css("top","0px");
 		setTimeout(
 			function(){
