@@ -143,9 +143,18 @@ function nextPlay(who)	//切换至下一个玩家动手
 	globalObjects[ker_PrevPlayer].operate="idle";
 	if (who==-1)
 	{
+		var dieCount=0;
 		sbFocus=(ker_PrevPlayer+1)%globalPlayerCount;
 		while (globalObjects[sbFocus].status=="die")
+		{
+			dieCount++;
 			sbFocus=(sbFocus+1)%globalPlayerCount;
+			if (dieCount>globalPlayerCount)
+			{
+				globalFocus=10000;
+				return;
+			}
+		}
 	}
 	else
 		sbFocus=who;

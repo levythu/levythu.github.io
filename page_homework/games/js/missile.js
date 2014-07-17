@@ -115,9 +115,11 @@ function missile_Blast()	//爆炸，毁坏范围内地形以及炸飞范围内�
 function missile_OnCrush()	//受冲撞爆炸
 {
 	this.canEliminate=true;
-	$("#bkexp")[0].pause();
-	$("#bkexp")[0].currentTime=0;
-	$("#bkexp")[0].play();
+	var i=0;
+	while (i<3 && (!($(".bkexp")[i].ended || $(".bkexp")[i].paused))) i++;
+	$(".bkexp")[i].pause();
+	$(".bkexp")[i].currentTime=0;
+	$(".bkexp")[i].play();
 	this.blast();
 }
 function missile(id,pwd)	//导弹类构造函数，参数二为威力加成

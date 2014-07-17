@@ -258,10 +258,11 @@ function player_onDie(injury)	//死亡
 	this.health=0;
 	if (this.id==globalFocus)
 		nextPlay(-1);
-		
-	$("#bkcw")[0].pause();
-	$("#bkcw")[0].currentTime=0;
-	$("#bkcw")[0].play();
+	var i=0;
+	while (i<3 && (!($(".bkcw")[i].ended || $(".bkcw")[i].paused))) i++;	
+	$(".bkcw")[i].pause();
+	$(".bkcw")[i].currentTime=0;
+	$(".bkcw")[i].play();
 	
 	var sl=new soul();
 	sl.onSpawn(this.position[0],this.position[1]);
@@ -271,9 +272,11 @@ function player_enchantez(type)	//使用道具
 {
 	if (this.energy<st_enchante_energy[type]) return;
 	this.energy-=st_enchante_energy[type];
-	$("#bkpk")[0].pause();
-	$("#bkpk")[0].currentTime=0;
-	$("#bkpk")[0].play();
+	var i=0;
+	while (i<3 && (!($(".bkpk")[i].ended || $(".bkpk")[i].paused))) i++;
+	$(".bkpk")[i].pause();
+	$(".bkpk")[i].currentTime=0;
+	$(".bkpk")[i].play();
 	this.enchanter.push(type);
 	
 	var sl=new enchante(1,type);

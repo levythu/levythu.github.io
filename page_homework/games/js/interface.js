@@ -174,6 +174,8 @@ function bindEventsToButtons(){
 		$("#bkbt")[0].pause();
 		$("#bkbt")[0].currentTime=0;
 		$("#bkbt")[0].play();
+		$("#bkm")[0].pause();
+		$("#bkm")[0].currentTime=0;
 		$("#bkm")[0].play();
 		$('#starting-image').css("top","0px");
 		setTimeout(
