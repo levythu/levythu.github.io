@@ -1,12 +1,14 @@
-var moduleCompleted = 0;
-var moduleInTotal = 22;	//NEW!! in 7
-var chosenMapImg = 2;
-var startButtonClicked = false;
+var moduleCompleted = 0; //已完成资源加载数
+var moduleInTotal = 22;	//总共需要加载的资源数
+var chosenMapImg = 2;//默认地图编号
+var startButtonClicked = false; //是否已经按下开始键
 
+//已完成加载的资源计数
 function addGlobalFlag(){
 	moduleCompleted++;
 }
 
+//游戏结束跳转页面
 function goToEndingPage(arg){
 	
 	$('#winner').html(arg).css("font-size","80px");
@@ -21,6 +23,7 @@ function goToEndingPage(arg){
 }
 
 
+//前端各按钮的事件绑定
 function bindEventsToButtons(){
 	
 	function rotateImages(jQuery, deg){
@@ -69,8 +72,9 @@ function bindEventsToButtons(){
 		} else {
 			startButtonClicked = true;
 
-			var au = new Audio("au/button.wav");
-			au.play();
+		$("#bkbt")[0].pause();
+		$("#bkbt")[0].currentTime=0;
+		$("#bkbt")[0].play();
 
 			startGame(chosenMapImg);
 		}
@@ -81,8 +85,9 @@ function bindEventsToButtons(){
 		if (startButtonClicked) {
 			event.preventDefault();
 		} else {
-			var au = new Audio("au/button.wav");
-			au.play();
+			$("#bkbt")[0].pause();
+			$("#bkbt")[0].currentTime=0;
+			$("#bkbt")[0].play();
 
 			$('.map-preview:eq('+ (chosenMapImg - 1) +')').css("border-color","#9AC0CD");
 			$('#menu-area-map').fadeIn("slow",function(){
@@ -101,8 +106,9 @@ function bindEventsToButtons(){
 		if (startButtonClicked) {
 			event.preventDefault();
 		} else {
-			var au = new Audio("au/button.wav");
-			au.play();
+			$("#bkbt")[0].pause();
+			$("#bkbt")[0].currentTime=0;
+			$("#bkbt")[0].play();
 
 			$('#menu-area-about').fadeIn("slow",function(){
 				$(this).css("display","block");
@@ -117,8 +123,9 @@ function bindEventsToButtons(){
 	
 	
 	$('.ok-button').click(function(){
-		var au = new Audio("au/button.wav");
-		au.play();
+		$("#bkbt")[0].pause();
+		$("#bkbt")[0].currentTime=0;
+		$("#bkbt")[0].play();
 
 		if ($('#menu-area-map').css("display") == "block") {
 			$('#menu-area-map').fadeOut("slow",function(){
@@ -164,8 +171,9 @@ function bindEventsToButtons(){
 	
 	
 	$('#return-home a').click(function(){
-		var au = new Audio("au/button.wav");
-		au.play();
+		$("#bkbt")[0].pause();
+		$("#bkbt")[0].currentTime=0;
+		$("#bkbt")[0].play();
 		$("#bkm")[0].play();
 		$('#starting-image').css("top","0px");
 		setTimeout(
@@ -177,6 +185,7 @@ function bindEventsToButtons(){
 	});
 }
 
+//首页小配件晃动函数
 function vibrateWidgets(){
 	
 	function moveWidgets(jQuery){
@@ -234,6 +243,8 @@ function vibrateWidgets(){
 	
 }
 
+
+//加载首页
 function getFrontpage(){
 	
 	bindEventsToButtons();
@@ -251,7 +262,7 @@ function getFrontpage(){
 	
 }
 
-
+//DOM准备就绪，开始加载资源，进度条显示
 function loading(){
 	
 	var loader = $('#loader').percentageLoader({controllable:false});

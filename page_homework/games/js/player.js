@@ -152,8 +152,9 @@ function player_onJump()	//跳跃函数
 	this.velocity[1]-=JUMP_FORCE;
 	this.elaticity=0;
 	this.haveLean=false;
-	var au=new Audio("au/walk.wav");
-	au.play();
+	$("#bkwk")[0].pause();
+	$("#bkwk")[0].currentTime=0;
+	$("#bkwk")[0].play();
 	if (this.status=="crawl")
 	{
 		this.velocity[0]+=(this.orientation=="l"?-1*JUMP_LONG:JUMP_LONG);
@@ -179,8 +180,9 @@ function player_onCrawl(direction)	//'l'-'r' 爬行函数
 	st_walkRound++
 	if (st_walkRound==FPS/4)
 	{
-		var au=new Audio("au/walk.wav");
-		au.play();
+		$("#bkwk")[0].pause();
+		$("#bkwk")[0].currentTime=0;
+		$("#bkwk")[0].play();
 		st_walkRound=0;
 	}
 	this.position[0]+=dirVal;
@@ -257,8 +259,9 @@ function player_onDie(injury)	//死亡
 	if (this.id==globalFocus)
 		nextPlay(-1);
 		
-	var au=new Audio("au/crow.mp3");
-	au.play();
+	$("#bkcw")[0].pause();
+	$("#bkcw")[0].currentTime=0;
+	$("#bkcw")[0].play();
 	
 	var sl=new soul();
 	sl.onSpawn(this.position[0],this.position[1]);
@@ -268,8 +271,9 @@ function player_enchantez(type)	//使用道具
 {
 	if (this.energy<st_enchante_energy[type]) return;
 	this.energy-=st_enchante_energy[type];
-	var au=new Audio("au/pick.wav");
-	au.play();
+	$("#bkpk")[0].pause();
+	$("#bkpk")[0].currentTime=0;
+	$("#bkpk")[0].play();
 	this.enchanter.push(type);
 	
 	var sl=new enchante(1,type);

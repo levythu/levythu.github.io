@@ -161,8 +161,11 @@ function nextPlay(who)	//切换至下一个玩家动手
 	st_aimer_angle=INIT_ANGLE;
 	globalObjects[globalFocus].energy=MAX_ENERGY;
 	globalObjects[globalFocus].enchanter=[];
-	var au=new Audio("au/turn.wav");
-	au.play();
+	
+	$("#bktn")[0].pause();
+	$("#bktn")[0].currentTime=0;
+	$("#bktn")[0].play();
+	
 	globalWind=Math.random()*10-5;
 }
 function keyboardHook(e)		//键盘按下事件
@@ -523,8 +526,9 @@ function gameOver()	//游戏结束设置
 	globalObjects=[];
 	clearInterval(ker_Refresh2Timer);
 	
-	var au=new Audio("au/vik.mp3");
-	au.play();
+	$("#bkvk")[0].pause();
+	$("#bkvk")[0].currentTime=0;
+	$("#bkvk")[0].play();
 	
 	ker_SetEnd=false;
 	if (ker_Blood.red==0)

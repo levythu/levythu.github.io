@@ -55,8 +55,9 @@ function missile_OnDraw(context)	//导弹绘制，并根据速度确定方向角
 }
 function missile_OnSpawn(x,y,angle,force,dirConst)	//in rad，导弹发射
 {
-	var au=new Audio("au/fire.wav");
-	au.play();
+	$("#bkfr")[0].pause();
+	$("#bkfr")[0].currentTime=0;
+	$("#bkfr")[0].play();
 	console.log(force);
 	this.count=0;
 	this.position[0]=x;
@@ -114,8 +115,9 @@ function missile_Blast()	//爆炸，毁坏范围内地形以及炸飞范围内�
 function missile_OnCrush()	//受冲撞爆炸
 {
 	this.canEliminate=true;
-	var au=new Audio("au/exp.wav");
-	au.play();
+	$("#bkexp")[0].pause();
+	$("#bkexp")[0].currentTime=0;
+	$("#bkexp")[0].play();
 	this.blast();
 }
 function missile(id,pwd)	//导弹类构造函数，参数二为威力加成
