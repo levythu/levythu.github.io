@@ -84,6 +84,8 @@ function refreshTerrain(x,y,w,h)	//根据爆炸毁坏数组重绘部分炸坏的
     var data=imageData.data;
 	var ct=0;
 	for (var i=y;i<y+h;i++)
+	{
+		if (i>=HEIGHT) break;
 		for (var j=x;j<x+w;j++)
 		{
 			if (globalTerrain.ruin[i][j])
@@ -93,5 +95,6 @@ function refreshTerrain(x,y,w,h)	//根据爆炸毁坏数组重绘部分炸坏的
 			}
 			ct++;
 		}
+	}
 	context.putImageData(imageData,x,y);
 }
