@@ -1,5 +1,5 @@
 var moduleCompleted = 0;
-var moduleInTotal = 21;	//NEW!! in 7
+var moduleInTotal = 22;	//NEW!! in 7
 var chosenMapImg = 2;
 var startButtonClicked = false;
 
@@ -149,7 +149,7 @@ function bindEventsToButtons(){
 	$('.map-preview').click(function(){
 		var t = parseInt($(this).attr("id")[0]);
 
-		if (t <= 3) {
+		if (t <= 4) {
 			for (var i = 0; i < $('.map-preview').length; i++) {
 				if ($('.map-preview:eq('+i+')').css("border-color") != "transparent") {
 					$('.map-preview:eq('+i+')').css("border-color","transparent");	

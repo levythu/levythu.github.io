@@ -42,6 +42,7 @@ function preLoad()
 	getTerrain(2);
 	getTerrain(1);
 	getTerrain(3);
+	getTerrain(4);
 	initMissile();
 	initAimer();
 	initArrow();
