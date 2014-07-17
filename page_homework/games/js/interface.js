@@ -166,6 +166,7 @@ function bindEventsToButtons(){
 	$('#return-home a').click(function(){
 		var au = new Audio("au/button.wav");
 		au.play();
+		$("#bkm")[0].play();
 		$('#starting-image').css("top","0px");
 		setTimeout(
 			function(){
@@ -236,6 +237,7 @@ function vibrateWidgets(){
 function getFrontpage(){
 	
 	bindEventsToButtons();
+	$("#bkm")[0].play();
 	
 	$('#starting-image').css("visibility","visible");
 	
