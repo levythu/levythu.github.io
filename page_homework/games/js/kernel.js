@@ -45,6 +45,7 @@ function preLoad()	//进入游戏前的预加载。加载所有资源
 	getTerrain(1);
 	getTerrain(3);
 	getTerrain(4);
+	getTerrain(5);
 	initMissile();
 	initAimer();
 	initArrow();
