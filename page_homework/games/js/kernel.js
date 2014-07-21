@@ -175,7 +175,7 @@ function nextPlay(who)	//切换至下一个玩家动手
 	$("#bktn")[0].currentTime=0;
 	$("#bktn")[0].play();
 	
-	globalWind=Math.random()*10-5;
+	globalWind=(5-Math.sqrt(Math.random()*25))*(Math.random()<0.5?-1:1);
 }
 function keyboardHook(e)		//键盘按下事件
 {
