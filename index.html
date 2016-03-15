@@ -8,20 +8,23 @@
     <script type="text/javascript">
         setTimeout(function()
         {
-            window.location="https://www.levy.at"
-        }, 3000);
-		var tleft=3;
+            window.location="https://academic.levy.at/en-us/"
+        }, 5000);
+		var tleft=5;
 		setInterval(function()
         {
 			if (tleft==0) return;
-            document.getElementById('cont').innerHTML="Redirecting you to <a href=\"https://www.levy.at\">levy.at</a> within "
+            document.getElementById('cont').innerHTML="Redirecting you to <a href=\"https://academic.levy.at/en-us/\">my academic page</a> within "
 				+(--tleft)+
 				" seconds...";
         }, 1000);
     </script>
 </head>
 <body>
-	<p id="cont">Redirecting you to <a href="https://www.levy.at">levy.at</a> within 3 seconds...</p>
+	<p id="cont">Redirecting you to <a href="https://academic.levy.at/en-us/">my academic page</a> within 3 seconds...</p>
+	<p>
+		OR, you can pay a visit to my <a href="https://www.levy.at">personal blog</a>.
+	</p>
 </body>
 
 </html>
